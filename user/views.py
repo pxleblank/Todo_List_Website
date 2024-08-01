@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def cabinet(request):
+    return render(request, 'user/html_user_cabinet.html',
+
+                  )

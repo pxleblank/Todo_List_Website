@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from todo.views import todolist
+from user.views import cabinet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('todo.urls'))
+    # path('', include('todo.urls'))
+    path('', todolist, name='todolist'),
+    path('cabinet/', cabinet, name='cabinet'),
 ]
