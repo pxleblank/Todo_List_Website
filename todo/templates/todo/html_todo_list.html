@@ -8,15 +8,36 @@
 
             {% if is_tasks %}
                 <div class="u-clearfix u-sheet u-sheet-1">
-                    <h3 class="u-align-center u-text u-text-default u-text-1">ЗАДАЧИ</h3>
+                    <ul>
+                        {% for task in tasklist %}
+                            <li>
+                                {{ task.task }}
+                                <form method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="delete_task" value="{{ task.id }}">
+                                    <input type="submit" value="Удалить" class="delete-button">
+                                </form>
+                                <form method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="change_state" value="{{ task.id }}">
+                                    <input type="submit"
+                                           value="{% if task.state == 'in progress' %}В процессе{% else %}Завершено{% endif %}"
+                                           class="in-progress-button">
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             {% endif %}
 
             <div class="u-form u-form-1">
-                <form onSubmit="db" method="post">
+                <form method="post">
+                    {% csrf_token %}
                     <h3>Добавить дело:</h3>
-                    <textarea rows="3" cols="50" name="post_contents"></textarea>
-                    <input type="submit" value="Добавить дело">
+                    <label>
+                        <textarea rows="3" cols="50" name="post_contents"></textarea>
+                    </label>
+                    <input type="submit" value="Добавить дело" class="add-button">
                 </form>
             </div>
         </div>
