@@ -22,7 +22,7 @@
                                     <input type="hidden" name="change_state" value="{{ task.id }}">
                                     <input type="submit"
                                            value="{% if task.state == 'in progress' %}В процессе{% else %}Завершено{% endif %}"
-                                           class="in-progress-button">
+                                           class="{% if task.state == 'in progress' %}in-progress-button{% else %}complete-button{% endif %}">
                                 </form>
                             </li>
                         {% endfor %}

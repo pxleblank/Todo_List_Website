@@ -1,0 +1,29 @@
+[
+  {
+    "model": "todo.todolist",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "task": "Сходить в школу",
+      "state": "completed"
+    }
+  },
+  {
+    "model": "todo.todolist",
+    "pk": 11,
+    "fields": {
+      "user": 1,
+      "task": "Покушать",
+      "state": "completed"
+    }
+  },
+  {
+    "model": "todo.todolist",
+    "pk": 12,
+    "fields": {
+      "user": 1,
+      "task": "English",
+      "state": "in progress"
+    }
+  }
+]
