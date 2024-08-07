@@ -30,6 +30,14 @@
     cursor: pointer;
 }
 
+.quit-button {
+    background-color: darkred;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
 .u-section-1 .u-sheet-1 {
   min-height: 784px;
 }

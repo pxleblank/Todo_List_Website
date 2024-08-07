@@ -5,6 +5,22 @@ from django.contrib.auth import logout
 # from user.models import User
 
 
+def login(request):
+    return render(request, 'user/login_form.html',
+                  context={
+                        'title': 'Login'
+                  }
+                  )
+
+
+def register(request):
+    return render(request, 'user/registry_form.html',
+                  context={
+                        'title': 'Register'
+                  }
+                  )
+
+
 @login_required
 def cabinet(request):
     if request.method == 'POST':
