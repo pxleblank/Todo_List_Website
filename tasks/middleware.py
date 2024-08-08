@@ -7,8 +7,9 @@ class LoginRequiredMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.user.is_authenticated and not request.path.startswith(
-                reverse('login')) and not request.path.startswith(reverse('register')):
+        if (not request.user.is_authenticated and not request.path.startswith(
+                reverse('login')) and not request.path.startswith(reverse('register'))
+                and not request.path.startswith('/admin/')):
             return redirect('login')
         response = self.get_response(request)
         return response
