@@ -3,16 +3,15 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h2>Login</h2>
+<h2>Авторизация</h2>
 <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-{#    <label for="username">Username:</label>#}
-{#    <input type="text" id="username" name="username" required>#}
-{#    <br>#}
-{#    <label for="password">Password:</label>#}
-{#    <input type="password" id="password" name="password" required>#}
-{#    <br>#}
-      <input type="submit" value="Войти">
+    <label for="{{ form.username.id_for_label }}">Логин:</label>
+    {{ form.username }}
+    <br>
+    <label for="{{ form.password.id_for_label }}">Пароль:</label>
+    {{ form.password }}
+    <br>
+    <input type="submit" value="Войти">
 </form>
 {% endblock %}
