@@ -5,7 +5,7 @@ from django.contrib import auth
 from django.urls import reverse
 
 from user.models import User
-from user.forms import UserLoginForm, UserRegistrationForm
+from user.forms import UserLoginForm, UserRegistrationForm, UserCabinetForm
 
 
 def login(request):
@@ -52,12 +52,23 @@ def register(request):
 @login_required
 def cabinet(request):
     if request.method == 'POST':
-        logout(request)
-        return redirect('todolist')
+        form = UserCabinetForm(instance=request.user, data=request.POST, files=request.FILES)
+        if 'quit' in request.POST:
+            logout(request)
+            return redirect('todolist')
+
+        elif 'save-cabinet' in request.POST:
+            if form.is_valid():
+                form.save()
+                return redirect(reverse('cabinet'))
+
+    else:
+        form = UserCabinetForm(instance=request.user)
 
     return render(request, 'user/html_user_cabinet.html',
                   context={
                       'title': 'Cabinet',
-                      'username': request.user.username
+
+                      'form': form
                   }
                   )

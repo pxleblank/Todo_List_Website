@@ -4,10 +4,33 @@
 {% block page %}
     <section class="u-clearfix u-section-1" id="sec-c361">
         <div class="u-clearfix u-sheet u-sheet-1">
-            <h3 class="u-align-center u-text u-text-default u-text-1">{{ username }}</h3>
-            <form method="POST">
+            <img class="u-align-center u-text u-text-1" width="200" height="200" src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'images/def-avatar.png' %} {% endif %}">
+
+            <form action="{% url 'cabinet' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="submit" value="Выйти из аккаунта" class="quit-button">
+                <div>
+                    <label class="u-align-center u-text u-text-1" for="{{ form.image.id_for_label }}">Выбрать
+                        аватарку:</label>
+                    {{ form.image }}
+                </div>
+                <div>
+                    <label class="u-align-center u-text u-text-1" for="{{ form.username.id_for_label }}">Логин:</label>
+                    {{ form.username }}
+                </div>
+                <div>
+                    <label class="u-align-center u-text u-text-1" for="{{ form.email.id_for_label }}">Email:</label>
+                    {{ form.email }}
+                </div>
+                <div>
+                    <input type="submit" value="Сохранить" class="add-button" name="save-cabinet">
+                </div>
+            </form>
+
+            <form action="{% url 'cabinet' %}" method="POST">
+                {% csrf_token %}
+                <div class="u-clearfix u-sheet u-sheet-1">
+                    <input type="submit" value="Выйти из аккаунта" class="quit-button" name="quit">
+                </div>
             </form>
         </div>
     </section>
