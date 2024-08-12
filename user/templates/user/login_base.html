@@ -9,17 +9,17 @@
     <link rel="stylesheet" href="{% static '/csstodolist.css' %}" media="screen">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'login' %}">Авторизация</a></li>
-                <li><a href="{% url 'register' %}">Регистрация</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'login' %}">Авторизация</a></li>
+            <li><a href="{% url 'register' %}">Регистрация</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
 </body>
 </html>

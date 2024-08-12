@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.urls import reverse
 
 from user.models import User
@@ -36,6 +36,7 @@ def register(request):
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Регистрация прошла успешно!')
             return redirect(reverse('login'))
     else:
         form = UserRegistrationForm()

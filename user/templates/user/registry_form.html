@@ -3,21 +3,24 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h2>Регистрация</h2>
-<form action="{% url 'register' %}" method="POST">
-    {% csrf_token %}
-    <label for="{{ form.username.id_for_label }}">Логин:</label>
-    {{ form.username }}
-    <br>
-    <label for="{{ form.email.id_for_label }}">Email:</label>
-    {{ form.email }}
-    <br>
-    <label for="{{ form.password1.id_for_label }}">Пароль:</label>
-    {{ form.password1 }}
-    <br>
-    <label for="{{ form.password2.id_for_label }}">Подтвердите пароль:</label>
-    {{ form.password2 }}
-    <br>
-    <input type="submit" value="Зарегистрироваться">
-</form>
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+    <h2>Регистрация</h2>
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <label for="{{ form.username.id_for_label }}">Логин:</label>
+        {{ form.username }}
+        <br>
+        <label for="{{ form.email.id_for_label }}">Email:</label>
+        {{ form.email }}
+        <br>
+        <label for="{{ form.password1.id_for_label }}">Пароль:</label>
+        {{ form.password1 }}
+        <br>
+        <label for="{{ form.password2.id_for_label }}">Подтвердите пароль:</label>
+        {{ form.password2 }}
+        <br>
+        <input type="submit" value="Зарегистрироваться">
+    </form>
 {% endblock %}

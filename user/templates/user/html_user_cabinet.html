@@ -4,7 +4,8 @@
 {% block page %}
     <section class="u-clearfix u-section-1" id="sec-c361">
         <div class="u-clearfix u-sheet u-sheet-1">
-            <img class="u-align-center u-text u-text-1" width="200" height="200" src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'images/def-avatar.png' %} {% endif %}">
+            <img class="u-align-center u-text u-text-1" width="200" height="200"
+                 src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'images/def-avatar.png' %} {% endif %}">
 
             <form action="{% url 'cabinet' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
