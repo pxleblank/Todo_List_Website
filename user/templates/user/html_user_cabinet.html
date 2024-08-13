@@ -26,6 +26,9 @@
                     <input type="submit" value="Сохранить" class="add-button" name="save-cabinet">
                 </div>
             </form>
+            {% if user.is_superuser or user.is_staff %}
+                <a href="{% url 'admin:index' %}">Админка</a>
+            {% endif %}
 
             <form action="{% url 'cabinet' %}" method="POST">
                 {% csrf_token %}

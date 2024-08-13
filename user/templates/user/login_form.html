@@ -3,24 +3,29 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    {% if messages or form.non_field_errors %}
-        {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        {% else %}
-            {{ form.non_field_errors }}
+    {% if user.is_authenticated %}
+        <p>Вы авторизованы</p>
+        <a href="{% url 'cabinet' %}">Личный кабинет</a>
+    {% else %}
+        {% if messages or form.non_field_errors %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% else %}
+                {{ form.non_field_errors }}
+            {% endif %}
         {% endif %}
+        <h2>Авторизация</h2>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <label for="{{ form.username.id_for_label }}">Логин:</label>
+            {{ form.username }}
+            <br>
+            <label for="{{ form.password.id_for_label }}">Пароль:</label>
+            {{ form.password }}
+            <br>
+            <input type="submit" value="Войти">
+        </form>
     {% endif %}
-    <h2>Авторизация</h2>
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        <label for="{{ form.username.id_for_label }}">Логин:</label>
-        {{ form.username }}
-        <br>
-        <label for="{{ form.password.id_for_label }}">Пароль:</label>
-        {{ form.password }}
-        <br>
-        <input type="submit" value="Войти">
-    </form>
 {% endblock %}
