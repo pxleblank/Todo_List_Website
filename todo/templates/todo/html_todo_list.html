@@ -12,11 +12,7 @@
                         {% for task in tasklist %}
                             <li>
                                 {{ task.task }}
-                                <form action='{% url 'todolist' %}' method="post" style="display:inline;">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="delete_task" value="{{ task.id }}">
-                                    <input type="submit" value="Удалить" class="delete-button">
-                                </form>
+                                <a class="delete-button" href={% url "delete_task" task.id %}>Удалить</a>
                                 <form action='{% url 'todolist' %}' method="post" style="display:inline;">
                                     {% csrf_token %}
                                     <input type="hidden" name="change_state" value="{{ task.id }}">

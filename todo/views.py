@@ -34,3 +34,8 @@ def todolist(request):
                       'tasklist': Todolist.objects.filter(user=request.user),
                   }
                   )
+
+
+def delete_task(request, task_id):
+    Todolist.objects.filter(user=request.user, id=task_id).delete()
+    return redirect(request.META['HTTP_REFERER'])
