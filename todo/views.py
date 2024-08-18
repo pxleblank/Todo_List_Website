@@ -39,3 +39,10 @@ def todolist(request):
 def delete_task(request, task_id):
     Todolist.objects.filter(user=request.user, id=task_id).delete()
     return redirect(request.META['HTTP_REFERER'])
+
+
+def change_state(request, task_id):
+    task = Todolist.objects.get(id=task_id)
+    task.state = 'completed' if task.state == 'in progress' else 'in progress'
+    task.save()
+    return redirect(request.META['HTTP_REFERER'])

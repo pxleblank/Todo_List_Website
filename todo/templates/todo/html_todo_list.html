@@ -11,15 +11,11 @@
                     <ul>
                         {% for task in tasklist %}
                             <li>
-                                {{ task.task }}
-                                <a class="delete-button" href={% url "delete_task" task.id %}>Удалить</a>
-                                <form action='{% url 'todolist' %}' method="post" style="display:inline;">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="change_state" value="{{ task.id }}">
-                                    <input type="submit"
-                                           value="{% if task.state == 'in progress' %}В процессе{% else %}Завершено{% endif %}"
-                                           class="{% if task.state == 'in progress' %}in-progress-button{% else %}complete-button{% endif %}">
-                                </form>
+                                <p>{{ task.task }}
+                                    <a class="delete-button" href={% url "delete_task" task.id %}>Удалить</a>
+                                    <a class="{% if task.state == 'in progress' %}in-progress-button{% else %}complete-button{% endif %}"
+                                       href={% url "change_state" task.id %}>{% if task.state == 'in progress' %}В процессе{% else %}Завершено{% endif %}</a>
+                                </p>
                             </li>
                         {% endfor %}
                     </ul>
