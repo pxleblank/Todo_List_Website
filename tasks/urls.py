@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from todo.views import todolist, delete_task, change_state
+from todo.views import todolist, delete_task, change_state, AddTaskInTodoListForm
+# from todo.forms import AddTaskInTodoListForm
 from user.views import cabinet, login, register
 
 from django.conf.urls.static import static
@@ -30,7 +31,8 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('register/', register, name='register'),
     path('task/delete/<int:task_id>/', delete_task, name='delete_task'),
-    path('task/change_state/<int:task_id>/', change_state, name='change_state')
+    path('task/change_state/<int:task_id>/', change_state, name='change_state'),
+    path('task/add/', AddTaskInTodoListForm.as_view(), name='add_task')
 ]
 
 if settings.DEBUG:

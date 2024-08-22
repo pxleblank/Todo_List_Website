@@ -23,14 +23,14 @@
             {% endif %}
 
             <div class="u-form u-form-1">
-                <form action='{% url 'todolist' %}' method="post">
-                    {% csrf_token %}
-                    <h3>Добавить дело:</h3>
-                    <label>
-                        <textarea rows="3" cols="50" name="post_contents"></textarea>
-                    </label>
-                    <input type="submit" value="Добавить дело" class="add-button">
-                </form>
+                <a class="add-button" href={% url "add_task" %}>Добавить дело</a>
+{#                <form action='{% url 'todolist' %}' method="post">#}
+{#                    {% csrf_token %}#}
+{#                    <h3>Добавить дело:</h3>#}
+{#                    <label for="{{ form.task.id_for_label }}">Логин:</label>#}
+{#                    {{ form.task }}#}
+{#                    <input type="submit" value="Добавить дело" class="add-button">#}
+{#                </form>#}
             </div>
         </div>
     </section>
